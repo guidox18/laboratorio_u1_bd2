@@ -17,9 +17,17 @@ CREATE TABLE HR.EMPLOYEES
 ;
 
 */
-
-/*Actividad N° 02 
-– Reconociendo la estructura*/
+/*Actividad 1 - Revision de Sintaxis*/
+/*1 Error porque HR.employess,el nombre de esa tabla no existe,  la solucion es :*/
+SELECT last_name, job_id, salary AS Sal
+FROM HR.employees;
+/*2 No va a mostrar nada porque esa tabla no existe, la solucion es :*/
+SELECT * FROM HR.job_grades;
+/*3 Sale el error porque el campo sal no existe, y tambien por que el nombre de  la tabla h.employees
+no existe, la solucion es :*/
+SELECT * employee_id,last_name sal x 12 ANNUAL SALARY from HR.employess;
+/*Actividad NÂ° 02 
+â€“ Reconociendo la estructura*/
 /*2.El departamento de Recursos Humanos 
 requiere un reporte que muestre los campos: 
 employee_id, last_name y job_id, asicomo el 
@@ -31,30 +39,30 @@ FROM HR.EMPLOYEES;
 /*3.Finalmente el departamento de Recursos Humanos 
 requiere un listado de todos valores del campo JOB_ID 
 de la tabla EMPLOYEES pero que se muestren de forma 
-única y no repetida*/
+Ãºnica y no repetida*/
 
 SELECT DISTINCT JOB_ID FROM HR.EMPLOYEES;
 
 
-/*Actividad N° 03 
-– Consultas Básicas*/
+/*Actividad NÂ° 03 
+â€“ Consultas BÃ¡sicas*/
 /*1.El departamento de Recursos Humanos requiere 
-ampliar el reporte anterior (2.2) para hacerlo más 
+ampliar el reporte anterior (2.2) para hacerlo mÃ¡s 
 comprensible, por lo que se requiere que los encabezados 
-de las columnas sean: Emp N°, Empleado, Puesto y Fecha Contratación.*/
-SELECT EMPLOYEE_ID as 'Emp Nº',LAST_NAME as 'Empleado', JOB_ID as 'Puesto', HIRE_DATE as 'Fecha Contratación' 
+de las columnas sean: Emp NÂ°, Empleado, Puesto y Fecha ContrataciÃ³n.*/
+SELECT EMPLOYEE_ID as 'Emp NÂº',LAST_NAME as 'Empleado', JOB_ID as 'Puesto', HIRE_DATE as 'Fecha ContrataciÃ³n' 
 FROM HR.EMPLOYEES;
 
 /*2.Adicionalmente el departamento de Recursos Humanos
- requiere un reporte más sencillo, en el que se muestre 
- los campos: last_name y job_id en una sola y única columna 
+ requiere un reporte mÃ¡s sencillo, en el que se muestre 
+ los campos: last_name y job_id en una sola y Ãºnica columna 
  (los datos deben estar separados por una coma) que tenga
  como alias Empleado y Puesto.*/
 SELECT (LAST_NAME + ', ' + JOB_ID) As 'Empleado y Puesto' FROM HR.EMPLOYEES
 
-/*3.Finalmente a modo de práctica, realizar una consulta 
+/*3.Finalmente a modo de prÃ¡ctica, realizar una consulta 
 que muestre todos los campos de la tabla EMPLOYEES, en una 
-sola y única columna, los datos deben estar separados por 
+sola y Ãºnica columna, los datos deben estar separados por 
 una coma y la columna debe tener como encabezado Los Empleados*/
 
 SELECT (FIRST_NAME + ', ' + LAST_NAME+ ', ' + EMAIL + ', ' 
@@ -62,16 +70,16 @@ SELECT (FIRST_NAME + ', ' + LAST_NAME+ ', ' + EMAIL + ', '
 +  CONVERT(varchar(10), COMMISSION_PCT)+ ', ' +  CONVERT(varchar(10), MANAGER_ID) + ', ' + DEPARTMENT_ID) As 'Los Empleados' FROM HR.EMPLOYEES
 
 
-/*Actividad N° 05 
-– Funciones*/
+/*Actividad NÂ° 05 
+â€“ Funciones*/
 /*1.Se requiere realizar una consulta que visualice la fecha del sistema.*/
 Select GETDATE()
 
 /*2.El departamento de Recursos Humanos necesita un reporte de todos los empleados que muestre 
-el N° de Empleado,  Apellidos, Salario y una columna más con el cálculo del salario incrementado en 15.5% 
+el NÂ° de Empleado,  Apellidos, Salario y una columna mÃ¡s con el cÃ¡lculo del salario incrementado en 15.5% 
 (expresado solo en enteros) esta columna debe etiquetarse Nuevo Salario. */
 SELECT 
-EMPLOYEE_ID as 'Nº de empleado'
+EMPLOYEE_ID as 'NÂº de empleado'
 ,LAST_NAME as 'Apellidos'
 ,SALARY as 'Salario'
 ,CONVERT(integer, SALARY + (15.5 * SALARY / 100 ))  as 'Nuevo Salario' 
@@ -81,15 +89,15 @@ FROM HR.EMPLOYEES
 muestre  el  resultado  de  la  resta  entre  el antiguo salario y el 
 nuevo salario. Etiquetar esta columna como Incremento.*/
 SELECT 
-EMPLOYEE_ID as 'Nº de empleado'
+EMPLOYEE_ID as 'NÂº de empleado'
 ,LAST_NAME as 'Apellidos'
 ,SALARY as 'Salario'
 ,CONVERT(integer, SALARY + (15.5 * SALARY / 100 ))  as 'Nuevo Salario' 
 ,CONVERT(integer, SALARY - (SALARY + (15.5 * SALARY / 100 )))  as 'Incremento' 
 FROM HR.EMPLOYEES
-/*4.Crear  un  reporte  que  muestre  los  Apellidos  (con  la  primera  letra  en  Mayúsculas  y  las  demás  en 
-Minúsculas)  y  la  longitud  de  los  apellidos  (colocar  alias  Longitud),  para  todos  aquellos  empleados 
-quienes sus apellidos empiecen con las letras ‘J’, ‘A’ y ‘M’. Ordenar los resultados por la columna 
+/*4.Crear  un  reporte  que  muestre  los  Apellidos  (con  la  primera  letra  en  MayÃºsculas  y  las  demÃ¡s  en 
+MinÃºsculas)  y  la  longitud  de  los  apellidos  (colocar  alias  Longitud),  para  todos  aquellos  empleados 
+quienes sus apellidos empiecen con las letras â€˜Jâ€™, â€˜Aâ€™ y â€˜Mâ€™. Ordenar los resultados por la columna 
 Apellido.*/
 SELECT 
 CONCAT(
