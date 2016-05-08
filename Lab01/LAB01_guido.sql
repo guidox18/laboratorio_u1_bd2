@@ -62,6 +62,61 @@ SELECT (FIRST_NAME + ', ' + LAST_NAME+ ', ' + EMAIL + ', '
 +  CONVERT(varchar(10), COMMISSION_PCT)+ ', ' +  CONVERT(varchar(10), MANAGER_ID) + ', ' + DEPARTMENT_ID) As 'Los Empleados' FROM HR.EMPLOYEES
 
 
+/*Actividad N° 04 
+–Restricción y Ordenamiento*/
+/*1.Debido a problemas con el presupuesto, el departamento de Recursos Humanos requiere un reporte que muestre los apellidos (last_name) y 
+salarios (salary) de todos los empleados que ganen más de $ 12,000.*/
+
+/*2.Asimismo  se  requiere  realizar una  consulta  que  muestre  los  apellidos  (last_name)  y  el 
+número de departamento (department_id) para los empleados que tengan numero (employee_id) 176.*/
+
+/*3.El departamento de Recursos Humanos necesita determinar los mayores y menores sueldos, modificar 
+la consulta del ítem 4.1. para mostrar el apellido y salario de cada empleado cuyo sueldo no esté en el rango de $ 5,000 a $ 12,000*/
+
+/*4.Crear  un  reporte  que muestre  los  apellidos  (last_name),  puesto  (job_id)  y  fecha  de  contratación (hire_date), de los empleados 
+que apellidan ‘Matos’ y ‘Taylor’, asimismo presentar el reporte ordenado ascendentemente por fecha de contratación*/
+
+/*5.Mostrar los apellidos (last_name) y número de departamento (departamento_id) de todos los empleados que pertenezcan a los departamentos 
+20 o 50 en orden alfabético ascendente por el apellido.*/
+
+/*6.Modificar el reporte del ítem 4.1. para mostrar los apellidos y salarios de los empleados que teng
+an un salario entre los $ 5,000 a $ 12,000 y pertenezcan a los números de departamento 20 o 50. Asimismo 
+etiquetar las cabeceras de los resultados con los alias Empleado y Salario Mensual  respectivamente.*/
+
+/*7.El  departamento  de  Recursos  Humanos  necesita  un  listado  de  apellidos  (last_name)  y  fecha  de contratación (hire_date) de 
+todos los empleados que fueron contratados el año 1994.*/
+
+/*8.Crear un reporte que muestre los apellidos (last_name) y puesto (job_id) de todos los empleados que no tengan un administrador (manager).*/
+
+/*9.Crear   un   reporte   para   mostrar   los   apellidos   (last_name),   salario   (salary)   y   %   de   comisión 
+(commission_pct). Ordenar los datos por salario y comisión de manera descendente, utilizar la opción numérica de la 
+cláusula ORDER BY.*/
+
+/*10.El personal del  departamento  de  Recursos Humanos desea tener mayor  flexibilidad con  los reportes hechos. Por ejemplo se requiere 
+un reporte de los apellidos (last_name) y salarios (salary) de todos los empleados que tengan un salario mayor a un monto que el personal 
+de Recursos Humanos ingresará. Probar con el valor $ 12,000*/
+
+/*11.El  departamento  de  Recursos  Humanos  requiere  extraer  reporte  basados  en  el  Administrador (manager_id). Se requiere 
+crear una consulta que pregunte al usuario por el Administrador (manager_id) y  genere  un reporte  con  los  números  de  empleado  (employee_id),  
+apellidos  (last_name),  salarios (salary)  y  numero  de  departamento  de  los  empleados  que  este  Administrador  tiene  a  su  cargo. 
+Adicionalmente también se desea tener la habilidad de ordenar este reporte en base a una determinada columna. Probar con los siguientes valores:
+Administrador (manager_id) = 103, ordenado por Apellido (last_name)
+Administrador (manager_id) = 201, ordenado por Salario (salary)
+Administrador (manager_id) = 124, ordenado por N° de Empleado (employee_id)*/
+
+/*12.Generar un listado de apellidos (last_name) de todos los empleados que tengan la letra ‘a’ en la tercera 
+letra de su apellido.*/
+
+/*13.Mostrar los apellidos (last_name) de todos los empleados que tengan tanto la letra ‘a’ como la letra ‘e’ 
+en su apellido.*/
+
+/*14.Mostrar los apellidos (last_name), puestos (job_id) y salario (salary) de todos los empleados que sean 
+Representantes de Ventas (SA_REP) o Responsables de Inventario (ST_CLERK) y cuyos salarios no 
+sean iguales a $ 2,500, $ 3,500 o $ 7,000.*/
+
+/*15.Modificar el reporte del ítem 4.6 y mostrar adicionalmente los datos de comisión (commission_pct) de 
+todos los empleados que solamente el 20% de comisión.*/
+
 /*Actividad N° 05 
 – Funciones*/
 /*1.Se requiere realizar una consulta que visualice la fecha del sistema.*/
