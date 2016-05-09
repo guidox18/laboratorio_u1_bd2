@@ -123,11 +123,15 @@ where MANAGER_ID is null;
 /*9.Crear   un   reporte   para   mostrar   los   apellidos   (last_name),   salario   (salary)   y   %   de   comisión 
 (commission_pct). Ordenar los datos por salario y comisión de manera descendente, utilizar la opción numérica de la 
 cláusula ORDER BY.*/
-
+select last_name, salary, commission_pct from hr.EMPLOYEES
+order by salary ,COMMISSION_PCT desc;
 
 /*10.El personal del  departamento  de  Recursos Humanos desea tener mayor  flexibilidad con  los reportes hechos. Por ejemplo se requiere 
 un reporte de los apellidos (last_name) y salarios (salary) de todos los empleados que tengan un salario mayor a un monto que el personal 
 de Recursos Humanos ingresará. Probar con el valor $ 12,000*/
+declare @salario integer=12000;
+select last_name, salary from hr.EMPLOYEES
+where SALARY > @salario;
 
 /*11.El  departamento  de  Recursos  Humanos  requiere  extraer  reporte  basados  en  el  Administrador (manager_id). Se requiere 
 crear una consulta que pregunte al usuario por el Administrador (manager_id) y  genere  un reporte  con  los  números  de  empleado  (employee_id),  
@@ -137,22 +141,26 @@ Administrador (manager_id) = 103, ordenado por Apellido (last_name)
 Administrador (manager_id) = 201, ordenado por Salario (salary)
 Administrador (manager_id) = 124, ordenado por N° de Empleado (employee_id)*/
 
+
 /*12.Generar un listado de apellidos (last_name) de todos los empleados que tengan la letra ‘a’ en la tercera 
 letra de su apellido.*/
+select last_name from hr.EMPLOYEES
+where LAST_NAME like '___a%'
 
 /*13.Mostrar los apellidos (last_name) de todos los empleados que tengan tanto la letra ‘a’ como la letra ‘e’ 
 en su apellido.*/
+select last_name from hr.EMPLOYEES
+where LAST_NAME like '%a%'and LAST_NAME like '%e%';
 
 /*14.Mostrar los apellidos (last_name), puestos (job_id) y salario (salary) de todos los empleados que sean 
 Representantes de Ventas (SA_REP) o Responsables de Inventario (ST_CLERK) y cuyos salarios no 
 sean iguales a $ 2,500, $ 3,500 o $ 7,000.*/
+select last_name, job_id, salary 
 
 /*15.Modificar el reporte del ítem 4.6 y mostrar adicionalmente los datos de comisión (commission_pct) de 
 todos los empleados que solamente el 20% de comisión.*/
 
-/*Actividad N° 05 
-– Funciones*/
-=======
+
 /*Actividad NÂ° 05 
 â€“ Funciones*/
 >>>>>>> origin/master
