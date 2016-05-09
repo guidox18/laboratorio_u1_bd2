@@ -66,31 +66,54 @@ SELECT (FIRST_NAME + ', ' + LAST_NAME+ ', ' + EMAIL + ', '
 –Restricción y Ordenamiento*/
 /*1.Debido a problemas con el presupuesto, el departamento de Recursos Humanos requiere un reporte que muestre los apellidos (last_name) y 
 salarios (salary) de todos los empleados que ganen más de $ 12,000.*/
+Select LAST_NAME,SALARY FROM HR.EMPLOYEES WHERE SALARY< 12000
 
 /*2.Asimismo  se  requiere  realizar una  consulta  que  muestre  los  apellidos  (last_name)  y  el 
 número de departamento (department_id) para los empleados que tengan numero (employee_id) 176.*/
+Select LAST_NAME, DEPARTMENT_ID from HR.EMPLOYEES WHERE EMPLOYEE_ID =176
 
 /*3.El departamento de Recursos Humanos necesita determinar los mayores y menores sueldos, modificar 
 la consulta del ítem 4.1. para mostrar el apellido y salario de cada empleado cuyo sueldo no esté en el rango de $ 5,000 a $ 12,000*/
 
+--falta corregir
+SELECT DISTINCT LAST_NAME,
+        MIN(SALARY)  AS MinSalary
+       , MAX(SALARY) AS MaxSalary
+FROM HR.EMPLOYEES 
+group by EMPLOYEE_ID
+having SALARY not between 5000 and 12000;
+go
+
 /*4.Crear  un  reporte  que muestre  los  apellidos  (last_name),  puesto  (job_id)  y  fecha  de  contratación (hire_date), de los empleados 
 que apellidan ‘Matos’ y ‘Taylor’, asimismo presentar el reporte ordenado ascendentemente por fecha de contratación*/
+Select Last_Name, job_id, hire_date from HR.EMPLOYEES
+WHERE LAST_NAME= 'Matos' and LAST_NAME = 'Taylor';
+go
 
 /*5.Mostrar los apellidos (last_name) y número de departamento (departamento_id) de todos los empleados que pertenezcan a los departamentos 
 20 o 50 en orden alfabético ascendente por el apellido.*/
+select last_name, department_id from HR.EMPLOYEES 
+WHERE DEPARTMENT_ID=20 OR DEPARTMENT_ID= 50
+ORDER BY LAST_NAME asc;
 
 /*6.Modificar el reporte del ítem 4.1. para mostrar los apellidos y salarios de los empleados que teng
 an un salario entre los $ 5,000 a $ 12,000 y pertenezcan a los números de departamento 20 o 50. Asimismo 
 etiquetar las cabeceras de los resultados con los alias Empleado y Salario Mensual  respectivamente.*/
 
+
 /*7.El  departamento  de  Recursos  Humanos  necesita  un  listado  de  apellidos  (last_name)  y  fecha  de contratación (hire_date) de 
 todos los empleados que fueron contratados el año 1994.*/
+select last_name, hire_date from HR.EMPLOYEES 
+where HIRE_DATE = CONVERT(varchar(20),getdate(),1994),
 
 /*8.Crear un reporte que muestre los apellidos (last_name) y puesto (job_id) de todos los empleados que no tengan un administrador (manager).*/
+select last_name, job_id from hr.EMPLOYEES
+where MANAGER_ID is null;
 
 /*9.Crear   un   reporte   para   mostrar   los   apellidos   (last_name),   salario   (salary)   y   %   de   comisión 
 (commission_pct). Ordenar los datos por salario y comisión de manera descendente, utilizar la opción numérica de la 
 cláusula ORDER BY.*/
+
 
 /*10.El personal del  departamento  de  Recursos Humanos desea tener mayor  flexibilidad con  los reportes hechos. Por ejemplo se requiere 
 un reporte de los apellidos (last_name) y salarios (salary) de todos los empleados que tengan un salario mayor a un monto que el personal 
