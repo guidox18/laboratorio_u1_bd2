@@ -88,6 +88,32 @@ where SALARY in (2500,3500,7000);
 /*15.Modificar el reporte del ítem 4.6 y mostrar adicionalmente los datos de comisión (commission_pct) de 
 todos los empleados que solamente el 20% de comisión.*/
 
+/*Actividad N° 06
+–Funciones de Conversión*/
+/*1.Crear un reporte que muestre lo siguiente por cada empleado. [Apellido del empleado] gana [Salario] pero quisiera [3 veces Salario].
+Etiquetar la columna como Sueldos Soñados*/
+select last_name, salary, SALARY*3 as 'sueldo soñado' from hr.EMPLOYEES
 
+/*2.Realizar  una  consulta  que  muestre  el  Apellido  del  empleado,  fecha  de  contratación  y  la  Fecha  de 
+Revisión del Salario, la cual es el primer Lunes después de cada seis meses de servicio, etiquetar la columna como Revisión, asimismo el formato 
+de esta fecha debe ser similar al siguiente: Lunes, el veintiuno de julio, 2003 */
+select last_name, hire_date from hr.employees;
 
+/*3.Mostrar un reporte que tenga los Apellidos, Fecha de Contratación y el Día de Inicio de cada empleado 
+(Lunes, Martes, etc...), etiquetar la última columna como Día. Ordenar los resultados por el Día de Inicio empezando por Lunes.*/
+--falta
+select last_name, hire_date from hr.employees
+
+/*4.Crear un listado que muestre los Apellidos de los empleados  y sus Montos de Comisión, en caso no 
+tenga comisión deberá mostrar el texto ‘Sin Comisión’, etiquetar esta ultima columna como Comisión.*/
+--falta
+select last_name, commission_pct from hr.employees
+
+/*5.Utilizando la función DECODE, crear un reporte que muestre los apellidos, los puestos y los grados de los empleados basados en sus puestos, 
+utilizando la siguiente información:
+Puesto Grado AD_PRESAST_MAN BIT_PROGCSA_REPDST_CLERKE Ninguno de los Anteriores*/
+--falta
+select last_name from hr.employees
+
+/*6.Rescribir la consulta anterior utilizando la función CASE*/
  
