@@ -10,11 +10,12 @@ número de departamento (department_id) para los empleados que tengan numero (emp
 Select LAST_NAME, DEPARTMENT_ID from HR.EMPLOYEES WHERE EMPLOYEE_ID =176
 
 /*3.El departamento de Recursos Humanos necesita determinar los mayores y menores sueldos, modificar 
-la consulta del ítem 4.1. para mostrar el apellido y salario de cada empleado cuyo sueldo no esté en el rango de $ 5,000 a $ 12,000*/
+la consulta del ítem 4.1. para mostrar el apellido y salario de cada empleado cuyo sueldo no esté en el rango de 
+$ 5,000 a $ 12,000*/
 
 --falta corregir
-SELECT DISTINCT LAST_NAME,
-        MIN(SALARY)  AS MinSalary
+SELECT DISTINCT LAST_NAME
+        ,MIN(SALARY)  AS MinSalary
        , MAX(SALARY) AS MaxSalary
 FROM HR.EMPLOYEES 
 group by EMPLOYEE_ID
@@ -97,7 +98,8 @@ select last_name, salary, SALARY*3 as 'sueldo soñado' from hr.EMPLOYEES
 /*2.Realizar  una  consulta  que  muestre  el  Apellido  del  empleado,  fecha  de  contratación  y  la  Fecha  de 
 Revisión del Salario, la cual es el primer Lunes después de cada seis meses de servicio, etiquetar la columna como Revisión, asimismo el formato 
 de esta fecha debe ser similar al siguiente: Lunes, el veintiuno de julio, 2003 */
-select last_name, hire_date from hr.employees;
+SELECT last_name, hire_date, TO_CHAR(NEXT_DAY(ADD_MONTHS(hire_date, 6),'MONDAY'), 'fmDay , "the" Ddspth "of" Month, YYYY') AS 'Revisión del salario'
+FROM hr.employees;
 
 /*3.Mostrar un reporte que tenga los Apellidos, Fecha de Contratación y el Día de Inicio de cada empleado 
 (Lunes, Martes, etc...), etiquetar la última columna como Día. Ordenar los resultados por el Día de Inicio empezando por Lunes.*/
@@ -112,8 +114,23 @@ select last_name, commission_pct from hr.employees
 /*5.Utilizando la función DECODE, crear un reporte que muestre los apellidos, los puestos y los grados de los empleados basados en sus puestos, 
 utilizando la siguiente información:
 Puesto Grado AD_PRESAST_MAN BIT_PROGCSA_REPDST_CLERKE Ninguno de los Anteriores*/
---falta
-select last_name from hr.employees
+
+SELECT CARGO_ID, DECODE(
+'AD_PRES','A',
+'ST_MAN','B',
+'IT_PROG','C',
+'SA_REP','D',
+'ST_CLERK','E',
+'0'
+)
+FROM HR.EMPLOYEES;
 
 /*6.Rescribir la consulta anterior utilizando la función CASE*/
- 
+ SELECT CARGO_ID , CASE CARGO_ID
+WHEN 'AD_PRES' THEN 'A'
+WHEN 'ST_MAN' THEN 'B'
+WHEN 'IT_PROG' THEN 'C'
+WHEN 'SA_REP' THEN 'D'
+WHEN 'ST_CLERK' THEN 'E'
+ELSE '0'
+FROM HR.EMPLOYEES;
