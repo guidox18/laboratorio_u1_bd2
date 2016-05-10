@@ -1,4 +1,4 @@
-/*1.- El departamento de Recursos Humanos requiere crear sentencias SQL para insertar, actualizar y eliminar datos de empleados. Como prueba se utilizarÃ¡ la tabla Mis_Empleados antes de remitir las sentencias al departamento de Recursos Humanos.*/
+/*1.- El departamento de Recursos Humanos requiere crear sentencias SQL para insertar, actualizar y eliminar datos de empleados. Como prueba se utilizará la tabla Mis_Empleados antes de remitir las sentencias al departamento de Recursos Humanos.*/
 
 insert into HR.Mis_Empleados(id,apellidos,nombre,codigo,salario)
 values (1,'lulu','mini','2016',16)
@@ -20,7 +20,7 @@ create table HR.Mis_Empleados (
 /*drop table HR.Mis_Empleados */
 
 
-/*3.- Generar una sentencia de inserciÃ³n */
+/*3.- Generar una sentencia de inserción */
 
 insert into HR.Mis_Empleados(id,apellidos,nombre,codigo,salario)
 values (1,'Vargas Canseco','Raul','Rvargas',895)
@@ -28,8 +28,8 @@ values (1,'Vargas Canseco','Raul','Rvargas',895)
 	insert into HR.Mis_Empleados(id,apellidos,nombre,codigo,salario)
 	values (2,'Castro Feria ','Maria','mcastro',860)
 	
-/*4.- Generar un script que permita que mediante utilizaciÃ³n de variables de sustituciÃ³n, la inserciÃ³n de
-informaciÃ³n en la tabla Mis_Empleados. */
+/*4.- Generar un script que permita que mediante utilización de variables de sustitución, la inserción de
+información en la tabla Mis_Empleados. */
 insert into HR.Mis_Empleados(id,apellidos,nombre,codigo,salario)
 values (&id,&apellidos,&nombre,&codigo,&salario)
 
@@ -46,7 +46,7 @@ values (5,'Soria Peralta','Pedro','Pasoria',1550)
 /*6.- Cambios en una tabla*/
 
 
-/*7.- Cambiar el nombre del empleado nÂ° 3 a BenjamÃ­n. */
+/*7.- Cambiar el nombre del empleado n° 3 a Benjamín. */
 update HR.Mis_Empleados
 set apellidos='Benjamin'
 where id=3;
@@ -56,7 +56,7 @@ update HR.Mis_Empleados
 set salario=1000
 where &salario >salario;
 
-/*9.- Eliminar el registro del empleado MarÃ­a Castro*/
+/*9.- Eliminar el registro del empleado María Castro*/
 delete from HR.Mis_Empleados
 	where id=2 ;
 
@@ -70,20 +70,20 @@ insert into HR.Mis_Empleados(id,apellidos,nombre,codigo,salario)
 
 /*13.- Revisar la adicion realizada*/
 
-/*14.- Crear un punto de restauraciÃ³n intermedio para esta transacciÃ³n */
+/*14.- Crear un punto de restauración intermedio para esta transacción */
 BACKUP LOG
 
 /*15.- Borrar los registros de la tabla MIS_EMPLEADOS*/
 truncate table HR.Mis_Empleados ;
 /*16 Revisar los cambios realizados*/
 
-/*17.- Descartar los cambios hechos a la tabla sin descartar la Ãºltima adiciÃ³n hecha*/
+/*17.- Descartar los cambios hechos a la tabla sin descartar la última adición hecha*/
 ROLLBACK TO SAVEPOINT
 /*18 Revisar nuevamente los registros de la tabla MIS_EMPLEADOS */
 
 /*19 Confirmar todos los cambios hechos a la tabla MIS_EMPLEADOS. */
 
-/*20.- Modificar el script del punto 4.4. a fin de que se genere automÃ¡ticamente el CODIGO del empleado que lo conforman la primera letra de su nombre y la primera palabra de su apellido */
+/*20.- Modificar el script del punto 4.4. a fin de que se genere automáticamente el CODIGO del empleado que lo conforman la primera letra de su nombre y la primera palabra de su apellido */
 insert into HR.Mis_Empleados(id,apellidos,nombre,codigo,salario)
 values (&id,apellidos,&nombre,&codigo,&salario)
 select id,apellidos,nombre,codigo,salario
