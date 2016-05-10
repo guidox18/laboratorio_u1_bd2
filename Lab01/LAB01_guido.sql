@@ -220,19 +220,46 @@ ORDER BY MIN(SALARY) DESC;
 /*7.Crear una consulta que muestre el número total de empleados, así como el número total de empleados 
 contratados en los años 1995, 1996, 1997 y 1998, etiquetar las columnas apropiadamente*/
 SELECT COUNT(*) AS "Total" ,
-SUM(DECODE(TO_CHAR(hire_date,'YYYY'),1995,1,0)) AS "1995" ,
-SUM(DECODE(TO_CHAR(hire_date,'YYYY'),1996,1,0)) AS "1996" ,
-SUM(DECODE(TO_CHAR(hire_date,'YYYY'),1997,1,0)) AS "1997" ,
-SUM(DECODE(TO_CHAR(hire_date,'YYYY'),1998,1,0)) AS "1998"
+SUM(DECODE(TO_CHAR(HIRE_DATE,'YYYY'),1995,1,0)) AS "1995" ,
+SUM(DECODE(TO_CHAR(HIRE_DATE,'YYYY'),1996,1,0)) AS "1996" ,
+SUM(DECODE(TO_CHAR(HIRE_DATE,'YYYY'),1997,1,0)) AS "1997" ,
+SUM(DECODE(TO_CHAR(HIRE_DATE,'YYYY'),1998,1,0)) AS "1998"
 FROM HR.EMPLOYEES;
+/*
+DECODE(PC_SL_LDGR_CODE,'02','DR','CR'),
+SUM( DECODE(PC_SL_LDGR_CODE,'02',1,-1) *PC_AMOUNT),
+
+Select YourFieldAliasName =
+CASE PC_SL_LDGR_CODE
+	WHEN '02' THEN 'DR'
+	ELSE 'CR'
+END
+*/
+/*SELECT COUNT(*) AS "Total" ,
+CASE CONVERT(INT, YEAR('1995-05-08')) 
+WHEN 1995  THEN COUNT(YEAR(HIRE_DATE)='1995')
+END as "1995"
+,CASE CONVERT(INT, YEAR('1996-05-08')) 
+WHEN 1996  THEN 1996
+END as "1996"
+,CASE CONVERT(INT, YEAR('1997-05-08')) 
+WHEN 1997  THEN 1997
+END as "1997"
+,CASE CONVERT(INT, YEAR('1998-05-08')) 
+WHEN 1998  THEN 1998
+END as "1998"
+ FROM HR.EMPLOYEES*/
+
+
+
 
 /*8.Crear  una  consulta  matriz  que  muestre  el  puesto,  el  salario  por  cada  puesto  basado  en  el  N°  de 
 Departamento del empleado y el total del salario para cada puesto para los departamento 20, 50, 80 y 90, colocar un nombre apropiado a cada columna.*/
 SELECT JOB_ID,
-SUM (DECODE(departament_id,20,salary)) AS "Departamento 20",
-SUM (DECODE(departament_id,50,salary)) AS "Departamento 50",
-SUM (DECODE(departament_id,80,salary)) AS "Departamento 80",
-SUM (DECODE(departament_id,90,salary)) AS "Departamento 90",
+SUM (DECODE(DEPARTMENT_ID,20,SALARY)) AS "Departamento 20",
+SUM (DECODE(DEPARTMENT_ID,50,SALARY)) AS "Departamento 50",
+SUM (DECODE(DEPARTMENT_ID,80,SALARY)) AS "Departamento 80",
+SUM (DECODE(DEPARTMENT_ID,90,SALARY)) AS "Departamento 90",
 SUM(SALARY) AS "Salario Total"
 FROM HR.EMPLOYEES
 GROUP BY JOB_ID;
@@ -251,9 +278,9 @@ departamentos.  Utilizar  las  tablas  LOCATIONS  y  COUNTRIES.  Mostrar  el  ID
 /*2.El  departamento  de  Recursos  Humanos  necesita  un  reporte  de  todos  empleados,  que  muestres  los 
 apellidos   de   empleado   (last_name), el   n°   de   departamento   (department_id)   y   el   nombre   del 
 departamento (depertment_date) al cual pertenece*/
-SELECT e.last_name, d.departament_name
-FROM HR.EMPLOYEES  e, departaments d
-WHERE e.departament_id = d.departament_id
+SELECT e.last_name, d.DEPARTMENT_NAME
+FROM HR.EMPLOYEES  e, HR.DEPARTMENTS d
+WHERE e.DEPARTMENT_ID = d.DEPARTMENT_ID
 AND e.last_name LIKE '%a%';
 
 
@@ -261,34 +288,38 @@ AND e.last_name LIKE '%a%';
 Mostrar los Apellidos, Puesto, N° de Departamento y 
 Nombre de Departamento de todos los empleados 
 que trabajan en Toronto.*/
-SELECT e.last_name, e.job_id, d.DEPARTMENT_ID, d.departament_name
-FROM HR.EMPLOYEES  e, departaments d, locations l
+SELECT e.last_name, e.job_id, d.DEPARTMENT_ID, d.DEPARTMENT_NAME
+FROM HR.EMPLOYEES  e, HR.DEPARTMENTS d, Hr.LOCATIONS l
 WHERE e.DEPARTMENT_ID = d.DEPARTMENT_ID AND d.location_id = l.location_id
 AND LOWER(l.city) = LOWER('Toronto');
 
 /*4.Crear un reporte que muestre los Apellidos y N° de Identificación de los empleados, asimismo también 
 debe mostrarse el Apellido y N° de Identificación de su Administrador.*/
 SELECT e.last_name AS "Empleado" , e.employee_id AS "Emp#", a.last_name AS "Administrador", a.manager_id AS "Mgr#"
-FROM HR.EMPLOYEES  e, managers a
+FROM HR.EMPLOYEES  e, HR.managers a
 WHERE e.manager_id = a.MANAGER_ID;
 
 
 /*5.Modificar la consulta anterior para que incluya también a los empleados quienes no tienen Administrador 
 asignado*/
+SELECT e.last_name AS "Empleado" , e.employee_id AS "Emp#", a.last_name AS "Administrador", a.manager_id AS "Mgr#"
+FROM HR.EMPLOYEES  e, HR.managers a
 
 /*6.Crear un reporte que muestre los N° de Departamento y Apellidos de todos los empleados, asimismo 
 adicionar una columna con los Apellidos de todos emplea
 dos que trabajan en el mismo departamento. 
 Etiquetar esta columna como Colega.*/
 
+SELECT  
+DEPARTMENT_ID
+,LAST_NAME
+FROM HR.EMPLOYEES
 /*7.El  departamento  de  Recursos  Humanos  requiere  un  reporte  de  todo  el  personal  que  fue  contratado 
-después  del  empleado  apellidado  ‘Davies’.  Crear  un  reporte  que  muestre  el  apellid
-os  y  fecha  de 
+después  del  empleado  apellidado  ‘Davies’.  Crear  un  reporte  que  muestre  el  apellidos  y  fecha  de 
 contratación de todo los empleados contratado después de ‘Davies’.*/
 
 
 
 /*.8El departamento de Recursos Humanos requiere de un reporte que el apellido del empleado, fecha de 
 contratación  del  empleado,  apellido  del  administrador,  fecha  de  contratación
-del  administrador.  Para 
-todos aquellos empleados que fueron contratados antes que sus Administradores.*/
+del  administrador.  Para todos aquellos empleados que fueron contratados antes que sus Administradores.*/
