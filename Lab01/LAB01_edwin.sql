@@ -13,14 +13,10 @@ Select LAST_NAME, DEPARTMENT_ID from HR.EMPLOYEES WHERE EMPLOYEE_ID =176
 la consulta del ítem 4.1. para mostrar el apellido y salario de cada empleado cuyo sueldo no esté en el rango de 
 $ 5,000 a $ 12,000*/
 
---falta corregir
-SELECT DISTINCT LAST_NAME
-        ,MIN(SALARY)  AS MinSalary
-       , MAX(SALARY) AS MaxSalary
-FROM HR.EMPLOYEES 
-group by EMPLOYEE_ID
-having SALARY not between 5000 and 12000;
-go
+SELECT LAST_NAME, ROUND(MAX(salary),0) AS "Maximo" , ROUND(MIN(salary),0) AS "Minimo"
+FROM hr.employees
+GROUP BY JOB_ID
+having max(salary) >12000 and min(salary) <5000;
 
 /*4.Crear  un  reporte  que muestre  los  apellidos  (last_name),  puesto  (job_id)  y  fecha  de  contratación (hire_date), de los empleados 
 que apellidan ‘Matos’ y ‘Taylor’, asimismo presentar el reporte ordenado ascendentemente por fecha de contratación*/
@@ -37,6 +33,11 @@ ORDER BY LAST_NAME asc;
 /*6.Modificar el reporte del ítem 4.1. para mostrar los apellidos y salarios de los empleados que teng
 an un salario entre los $ 5,000 a $ 12,000 y pertenezcan a los números de departamento 20 o 50. Asimismo 
 etiquetar las cabeceras de los resultados con los alias Empleado y Salario Mensual  respectivamente.*/
+SELECT last_name as Empleado, min(salary) AS "Salario mensual"
+FROM hr.employees
+where DEPARTMENT_ID=20 or DEPARTMENT_ID=50
+GROUP BY LAST_NAME
+having max(salary) <12000 and min(salary) >5000;
 
 
 /*7.El  departamento  de  Recursos  Humanos  necesita  un  listado  de  apellidos  (last_name)  y  fecha  de contratación (hire_date) de 
@@ -68,6 +69,16 @@ Adicionalmente también se desea tener la habilidad de ordenar este reporte en ba
 Administrador (manager_id) = 103, ordenado por Apellido (last_name)
 Administrador (manager_id) = 201, ordenado por Salario (salary)
 Administrador (manager_id) = 124, ordenado por N° de Empleado (employee_id)*/
+declare @man_id integer;
+Select Employee_id, LAST_NAME, salary, count(department_id)
+from hr.EMPLOYEES
+
+group by MANAGER_ID
+having COUNT(DEPARTMENT_ID) >0
+order by case @man_id when 103 then LAST_NAME end
+		,case @man_id when 201 then SALARY end
+		,case @man_id when 124 then EMPLOYEE_ID end
+;
 
 
 /*12.Generar un listado de apellidos (last_name) de todos los empleados que tengan la letra ‘a’ en la tercera 
@@ -115,7 +126,7 @@ select last_name, commission_pct from hr.employees
 utilizando la siguiente información:
 Puesto Grado AD_PRESAST_MAN BIT_PROGCSA_REPDST_CLERKE Ninguno de los Anteriores*/
 
-SELECT CARGO_ID, DECODE(
+SELECT job_ID, DECODE(
 'AD_PRES','A',
 'ST_MAN','B',
 'IT_PROG','C',
@@ -126,11 +137,11 @@ SELECT CARGO_ID, DECODE(
 FROM HR.EMPLOYEES;
 
 /*6.Rescribir la consulta anterior utilizando la función CASE*/
- SELECT CARGO_ID , CASE CARGO_ID
+SELECT JOB_ID , CASE JOB_ID
 WHEN 'AD_PRES' THEN 'A'
 WHEN 'ST_MAN' THEN 'B'
 WHEN 'IT_PROG' THEN 'C'
 WHEN 'SA_REP' THEN 'D'
 WHEN 'ST_CLERK' THEN 'E'
-ELSE '0'
+ELSE '0'end
 FROM HR.EMPLOYEES;
